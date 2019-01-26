@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleafe.org">
+    <head>
+        <title>Edit User</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    </head>
+    <body>
+        <div class="">
+            <div th:replace="fragments/navbar :: navbar"></div>
+            <div class="jumbotron" style="padding-top: 40px;">
+                <form th:object="${user}" th:action="@{/users/save}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" th:field="*{username}" class="form-control" id="username"  placeholder="Username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="full_name">Full name</label>
+                        <input type="text" th:field="*{full_name}" class="form-control" id="full_name"  placeholder="Full Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" th:field="*{email}" class="form-control" id="email"  placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" th:field="*{password}" class="form-control" id="password"  placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="role_name">Role</label>
+                        <!--<input type="text" th:field="*{role_name}" class="form-control" id="role_name"  placeholder="Role"/>-->
+                        <select class="form-control" th:field="*{role_name}" id="role_name">
+                            <option th:value="ADMIN" th:text="ADMIN">ADMIN</option>
+                            <option th:value="MANAGER" th:text="MANAGER">MANAGER</option>
+                            <option th:value="USER" th:text="USER">USER</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="number" th:field="*{phone}" class="form-control" id="phone"  placeholder="Phone"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

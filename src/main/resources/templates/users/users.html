@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleafe.org">
+    <head>
+        <title>Leaves Homework</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    </head>
+    <body>
+        <div th:replace="fragments/navbar :: navbar"></div>
+        <div class="jumbotron" style="padding-top: 40px; text-align: center;">
+            <h1 class="display-3">Users</h1>
+            <p class="lead">This is a page where you can explore and manage Users</p>
+  
+            <hr class="my-4"/>
+            <div>
+                <ol class="breadcrumb">
+                    <li class="item">
+                        <a class="btn btn-outline-primary" th:href="@{/users/create}">Add new user</a>
+                    </li>
+                </ol>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Full name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.full_name}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td th:text="${user.role_name}"></td>
+                        <td th:text="${user.phone}"></td>
+                        <td>
+                            <a th:href="@{/users/edit/} + ${user.id}" class="btn btn-outline-primary">Edit</a>
+                            <a th:href="@{/users/delete/} + ${user.id}" class="btn btn-outline-primary">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+</html>

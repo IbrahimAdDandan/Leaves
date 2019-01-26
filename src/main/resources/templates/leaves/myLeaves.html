@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleafe.org">
+    <head>
+        <title>my Leaves</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    </head>
+    <body>
+        <div class="">
+            <div th:replace="fragments/navbar :: navbar"></div>
+        <div class="jumbotron" style="padding-top: 40px; text-align: center;">
+            <h1 class="display-3"><span th:text="${username}"></span>'s Leaves</h1>
+            <p class="lead">This is a page where you can explore your leaves</p>
+  
+            <hr class="my-4"/>
+            <div>
+                <ol class="breadcrumb">
+                    <li class="item">
+                        <a class="btn btn-outline-primary" th:href="@{/reqLeave}">Request a new Leave</a>
+                    </li>
+                </ol>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th>Leave ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Approval</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="leave : ${myLeaves}">
+                        <td th:text="${leave.id}"></td>
+                        <td th:text="${leave.start_date}"></td>
+                        <td th:text="${leave.end_date}"></td>
+                        <td th:text="(${leave.manipulated == true})? ${leave.approval} : 'not manipulated yet'"></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        </div>
+    </body>
+</html>

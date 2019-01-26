@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleafe.org">
+    <head>
+        <title>Leaves Types List</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    </head>
+    <body>
+        <div class="">
+            <div th:replace="fragments/navbar :: navbar"></div>
+        <div class="jumbotron" style="padding-top: 40px; text-align: center;">
+            <h1 class="display-3">Leaves Types</h1>
+            <p class="lead">This is a page where you can explore and manage leave types</p>
+  
+            <hr class="my-4"/>
+            <div>
+                <ol class="breadcrumb">
+                    <li class="item">
+                        <a class="btn btn-outline-primary" th:href="@{/leavetype/create}">Add new Type</a>
+                    </li>
+                </ol>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th>Leave ID</th>
+                        <th>Leave Name</th>
+                        <th>Leave Description</th>
+                        <th>Leave Number of hours</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="leave : ${listLeaves}">
+                        <td th:text="${leave.id}"></td>
+                        <td th:text="${leave.name}"></td>
+                        <td th:text="${leave.description}"></td>
+                        <td th:text="${leave.number_of_hours}"></td>
+                        <td>
+                            <a th:href="@{/leavetype/edit/} + ${leave.id}" class="btn btn-outline-primary">Edit</a>
+                            <a th:href="@{/leavetype/delete/} + ${leave.id}" class="btn btn-outline-primary">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        </div>
+    </body>
+</html>

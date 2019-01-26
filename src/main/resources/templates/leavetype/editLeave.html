@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleafe.org">
+    <head>
+        <title>new leave type</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    </head>
+    <body>
+        <div class="">
+            <div th:replace="fragments/navbar :: navbar"></div>
+            <div class="jumbotron" style="padding-top: 40px;">
+                <form th:object="${leave}" th:action="@{/leavetype/save}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <!--<div class="form-group">
+                        <label for="id">Leave ID</label>
+                        <input type="number" th:field="*{id}" class="form-control" id="id"  placeholder="Leave id" disabled="true"/>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="name">Leave Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name"  placeholder="Leave Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Leave Description</label>
+                        <input type="text" th:field="*{description}" class="form-control" id="Description"  placeholder="Leave Description"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Hours Number</label>
+                        <input type="number" th:field="*{number_of_hours}" class="form-control" id="hours"  placeholder="Hours Number"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleafe.org">
+    <head>
+        <title>my Leaves</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    </head>
+    <body>
+        <div class="">
+            <div th:replace="fragments/navbar :: navbar"></div>
+        <div class="jumbotron" style="padding-top: 40px; text-align: center;">
+            <h1 class="display-3"><span th:text="${username}"></span>'s Dashboard</h1>
+            <p class="lead">This is a page where Manager can Approve or reject requested leaves</p>
+  
+            <hr class="my-4"/>
+            <div>
+<!--                <ol class="breadcrumb">
+                    <li class="item">
+                        <a class="btn btn-outline-primary" th:href="@{/leaves/reqLeave}">Request a new Leave</a>
+                    </li>
+                </ol>-->
+            </div>
+<!--            <div th:each="leave : ${leaves}">
+                <div th:each="leav : ${leave}">
+                <div th:text="${leave}"></div>
+                <div th:text="${leave.leaves}">
+                <br/>
+                <br/>
+                </div>
+            </div>-->
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th>user</th>
+                        <th>Leave ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="leave : ${leaves}">
+                       <td th:text="${leave[0].username}"></td>
+<!--                       <tr th:each="leav : ${leave[1]}">
+-->                        <td th:text="${leave[1].id}"></td>
+                        <td th:text="${leave[1].start_date}"></td>
+                        <td th:text="${leave[1].end_date}"></td>
+                        
+                        <td>
+                            <a th:href="@{/leaves/approve/} + ${leave[1].id}" class="btn btn-outline-success">Approve</a>
+                            <a th:href="@{/leaves/reject/} + ${leave[1].id}" class="btn btn-outline-error">Reject</a>
+                        </td><!--
+                       </tr>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </body>
+</html>
